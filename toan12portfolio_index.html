@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tự đánh giá năng lực kiến thức – Toán 12</title>
+<style>
+  :root {
+    --ink: #293f3a;
+    --muted: #758a81;
+    --pink: #c66f55;
+    --purple: #527d70;
+    --line: #dce8df;
+    --surface: #fffdf7;
+    --lavender: #e8f0e8;
+    --blue: #e9f0e8;
+    --mint: #dcebe0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink); background: #f4f2e9;
+  }
+  .portfolio { max-width: 1160px; margin: 0 auto; overflow: hidden; border-radius: 14px; background: var(--surface); box-shadow: 0 12px 38px rgba(54, 79, 65, .08); }
+  .hero {
+    position: relative; padding: 30px 34px 28px 38px;
+    background: linear-gradient(120deg, #e4eee4 0%, #f4f0df 58%, #f4e5d9 100%);
+    border-left: 8px solid #7d9e8d;
+    overflow: hidden;
+  }
+  .eyebrow { margin: 0 0 14px; color: #527d70; font-size: 11px; font-weight: 800; letter-spacing: 2.2px; text-transform: uppercase; }
+  h1 { position: relative; z-index: 1; max-width: 780px; margin: 0 0 12px; font-size: clamp(25px, 3.7vw, 39px); line-height: 1.18; color: #2d5147; }
+  h1 span { color: #b9674e; }
+  .subtitle { position: relative; z-index: 1; max-width: 800px; margin: 0 0 8px; color: #657d72; font-size: 14px; line-height: 1.65; }
+  .sigma { position: absolute; right: 34px; bottom: 12px; font-size: 84px; font-weight: 800; color: #9bb7a5; opacity: .35; transform: rotate(-8deg); }
+  .content { padding: 22px 26px 26px; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .stat-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; min-width: 0; border-top: 4px solid #9bb7a5; }
+  .stat-label { margin: 0 0 10px; color: var(--muted); font-size: 12px; font-weight: 800; letter-spacing: .7px; }
+  .stat-number { margin: 0 0 9px; color: var(--purple); font-size: 32px; font-weight: 800; }
+  .stat-note { margin: 10px 0 0; color: #9586a3; font-size: 12px; }
+  .progress-track { height: 9px; border-radius: 4px; overflow: hidden; background: #e8ece2; }
+  .progress-fill { height: 100%; width: 0%; border-radius: inherit; background: linear-gradient(90deg, #c67a5c, #7e9e8d, #5c8f7d); transition: width .25s ease; }
+  .section-heading { display: flex; align-items: center; gap: 12px; margin: 4px 0 10px; font-size: 20px; }
+  .section-number { display: inline-grid; place-items: center; width: 34px; height: 34px; flex: 0 0 34px; border-radius: 8px; color: #426b5d; background: #e2eee4; font-size: 12px; }
+  .help { margin: 0 0 18px; color: #9385a0; font-size: 13px; line-height: 1.6; }
+  .legend { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 18px; }
+  .legend span { padding: 8px 11px; border-radius: 5px; font-size: 12px; font-weight: 700; }
+  .l1 { background: #f7e7df; color: #a65c45; } .l2 { background: #f4edd7; color: #8d7135; }
+  .l3 { background: #e8eee5; color: #58765e; } .l4 { background: #dcebe0; color: #3f765c; } .l5 { background: #d2e6d9; color: #2d694f; }
+  .table-wrap { width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: white; }
+  table { width: 100%; min-width: 790px; border-collapse: collapse; }
+  thead { background: #e7efe5; }
+  th { padding: 15px 12px; text-align: left; color: #456657; font-size: 12px; line-height: 1.4; }
+  td { padding: 13px 10px; border-top: 1px solid #f0e8f5; vertical-align: middle; }
+  tbody tr:nth-child(even) { background: #fbfcf7; }
+  .lesson { min-width: 105px; color: #a65f49; font-size: 13px; font-weight: 800; }
+  .lesson small { display: block; margin-top: 5px; color: #8b9b8e; font-size: 11px; font-weight: 500; }
+  input[type="text"], select {
+    width: 100%; min-width: 120px; padding: 11px 10px; border: 1px solid #dce7dc; border-radius: 7px;
+    background: #fff; color: #4e675a; font: inherit; font-size: 13px;
+  }
+  input[type="text"]:focus, select:focus { outline: 2px solid #c5d9c9; border-color: #7e9e8d; }
+  .bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px; }
+  .reflection { padding: 18px; border: 1px solid var(--line); border-radius: 10px; background: #fff; border-left: 4px solid #b9cdbd; }
+  .reflection h3 { margin: 0 0 10px; font-size: 15px; color: #3e6252; }
+  textarea { width: 100%; min-height: 110px; resize: vertical; border: 1px solid #dce7dc; border-radius: 7px; padding: 12px; font: inherit; font-size: 13px; line-height: 1.5; color: var(--ink); }
+  textarea:focus { outline: 2px solid #c5d9c9; border-color: #7e9e8d; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  button { cursor: pointer; border: 0; border-radius: 11px; padding: 12px 16px; font-weight: 700; font-size: 13px; }
+  .primary { background: #527d70; color: white; } .secondary { background: #e7efe5; color: #426b5d; } .warning { background: #f7e7df; color: #a65c45; }
+  .status { margin: 12px 0 0; min-height: 18px; color: #7e7090; font-size: 12px; line-height: 1.5; }
+  .footer { padding: 0 24px 24px; text-align: center; color: #87978b; font-size: 11px; letter-spacing: .3px; }
+  @media (max-width: 680px) {
+    body { padding: 8px; }
+    .hero { padding: 28px 20px 24px; }
+    .sigma { right: 12px; top: 18px; font-size: 62px; }
+    .content { padding: 16px; }
+    .stats, .bottom-grid { grid-template-columns: 1fr; }
+    .stat-number { font-size: 28px; }
+    .section-heading { font-size: 17px; }
+    .footer { padding: 0 16px 20px; }
+  }
+</style>
+</head>
+<body>
+<main class="portfolio">
+  <header class="hero">
+    <div class="sigma" aria-hidden="true">Σ</div>
+    <p class="eyebrow">MATH PORTFOLIO · HÀNH TRÌNH TOÁN HỌC</p>
+    <h1>Tự đánh giá <span>năng lực kiến thức</span></h1>
+    <p class="subtitle" id="chapterSubtitle">Chương 1 · Ứng dụng đạo hàm để khảo sát và vẽ đồ thị hàm số</p>
+    <p class="subtitle">Ghi nhận tiến bộ, nhìn rõ điều cần rèn luyện và chủ động đặt mục tiêu cho chặng đường tiếp theo.</p>
+  </header>
+
+  <section class="content">
+    <div class="stats">
+      <article class="stat-card">
+        <p class="stat-label">MỨC ĐỘ HOÀN THÀNH</p>
+        <p class="stat-number" id="completionNumber">0%</p>
+        <div class="progress-track" role="progressbar" aria-label="Mức độ hoàn thành" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressTrack">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p class="stat-note">Tỉ lệ tiêu chí đã được tự đánh giá (mức 1–5).</p>
+      </article>
+      <article class="stat-card">
+        <p class="stat-label">TIÊU CHÍ ĐÃ ĐÁNH GIÁ</p>
+        <p class="stat-number"><span id="ratedCount">0</span>/<span id="totalCount">15</span></p>
+        <p class="stat-note">5 bài học · 3 tiêu chí mỗi bài</p>
+      </article>
+    </div>
+
+    <h2 class="section-heading"><span class="section-number">01</span>Bảng đánh giá năng lực theo từng bài</h2>
+    <p class="help">Chọn mức độ phản ánh đúng quá trình học của em. Có thể sửa tên bài, kiến thức trọng tâm và mức tự đánh giá. Mức 1 là cần hỗ trợ nhiều; mức 5 là đã làm chủ kiến thức.</p>
+    <div class="legend" aria-label="Thang đánh giá">
+      <span class="l1">1 · Rất mơ hồ</span><span class="l2">2 · Cần cố gắng</span><span class="l3">3 · Tạm ổn</span><span class="l4">4 · Tự tin</span><span class="l5">5 · Xuất sắc</span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Bài học</th><th>Kiến thức trọng tâm</th><th>Hiểu bài</th><th>Nhớ định nghĩa, công thức</th><th>Vận dụng giải bài tập</th></tr>
+        </thead>
+        <tbody id="assessmentRows"></tbody>
+      </table>
+    </div>
+
+    <div class="bottom-grid">
+      <section class="reflection">
+        <h3>02 · Điểm mạnh của em</h3>
+        <textarea id="strengths" placeholder="Ví dụ: Em nhận biết được chiều biến thiên của hàm số và trình bày bảng biến thiên khá rõ ràng...">Em có ý thức ghi chép bài và cố gắng hoàn thành các bài tập được giao. Em đã biết sử dụng đạo hàm để xét tính đơn điệu, tìm cực trị của hàm số và bước đầu lập bảng biến thiên. Khi gặp bài tập cơ bản, em có thể áp dụng công thức đã học để giải và trình bày lời giải theo từng bước.</textarea>
+      </section>
+      <section class="reflection">
+        <h3>03 · Khó khăn cần cải thiện</h3>
+        <textarea id="challenges" placeholder="Ghi một dạng toán hoặc lỗi sai cụ thể mà em thường gặp...">Em đôi lúc còn nhầm lẫn khi xét dấu đạo hàm, tìm khoảng đồng biến – nghịch biến và xác định các tiệm cận của đồ thị. Với bài khảo sát, vẽ đồ thị hàm số hoặc bài toán thực tiễn cần lập mô hình, em còn mất nhiều thời gian và chưa thật sự tự tin. Em cũng cần cẩn thận hơn khi tính toán và kiểm tra điều kiện.</textarea>
+      </section>
+      <section class="reflection">
+        <h3>04 · Kế hoạch hành động</h3>
+        <textarea id="plan" placeholder="Ví dụ: Ôn lại công thức, làm thêm bài cùng dạng và kiểm tra lại điều kiện xác định...">Mỗi tuần, em sẽ hệ thống lại định nghĩa và công thức quan trọng, sau đó làm bài tập từ cơ bản đến vận dụng. Em sẽ luyện riêng các dạng xét dấu đạo hàm, tìm cực trị, tiệm cận và khảo sát hàm số; ghi lại lỗi sai vào vở để xem lại. Sau mỗi bài, em sẽ kiểm tra điều kiện xác định, phép tính và cách trình bày. Nếu chưa hiểu, em sẽ hỏi giáo viên hoặc bạn học.</textarea>
+      </section>
+      <section class="reflection">
+        <h3>05 · Đề xuất hỗ trợ</h3>
+        <textarea id="support" placeholder="Em mong giáo viên hoặc bạn học hỗ trợ nội dung nào?">Em mong giáo viên hướng dẫn thêm cách nhận dạng dạng toán và trình tự giải các bài khảo sát, vẽ đồ thị hàm số. Em cũng mong được luyện thêm bài tập mẫu về tiệm cận và ứng dụng đạo hàm trong thực tiễn, kèm lời giải từng bước để em dễ hiểu và tự luyện lại.</textarea>
+      </section>
+    </div>
+
+    <div class="actions">
+      <button class="primary" id="saveButton" type="button">Lưu trên thiết bị này</button>
+      <button class="secondary" id="exportButton" type="button">Tải bản đánh giá (.json)</button>
+      <button class="secondary" id="printButton" type="button">In / lưu PDF</button>
+      <button class="warning" id="resetButton" type="button">Xóa nội dung đã nhập</button>
+    </div>
+    <p class="status" id="statusMessage" role="status">Lưu ý: dữ liệu được lưu trong trình duyệt của thiết bị này. Hãy tải bản đánh giá hoặc in PDF để nộp/lưu vào e-Portfolio.</p>
+  </section>
+  <footer class="footer">E-Portfolio Toán 12 · Học tập – Phản tư – Tiến bộ</footer>
+</main>
+
+<script>
+(function () {
+  const labels = {
+    "": "Chưa chọn", "1": "1 · Rất mơ hồ", "2": "2 · Cần cố gắng",
+    "3": "3 · Tạm ổn", "4": "4 · Tự tin", "5": "5 · Xuất sắc"
+  };
+  const defaultLessons = [
+    ["Bài 1", "Tính đơn điệu và cực trị của hàm số"],
+    ["Bài 2", "Giá trị lớn nhất và giá trị nhỏ nhất"],
+    ["Bài 3", "Đường tiệm cận của đồ thị hàm số"],
+    ["Bài 4", "Khảo sát sự biến thiên và vẽ đồ thị hàm số"],
+    ["Bài 5", "Ứng dụng đạo hàm để giải quyết vấn đề thực tiễn"]
+  ];
+  const rows = document.getElementById("assessmentRows");
+  const storageKey = "math12-self-assessment-v1";
+
+  function makeSelect(name, value) {
+    const select = document.createElement("select");
+    select.setAttribute("aria-label", name);
+    Object.keys(labels).forEach(key => {
+      const option = document.createElement("option");
+      option.value = key;
+      option.textContent = labels[key];
+      select.appendChild(option);
+    });
+    select.value = value || "";
+    select.addEventListener("change", updateStats);
+    return select;
+  }
+
+  defaultLessons.forEach((lesson, i) => {
+    const tr = document.createElement("tr");
+    const lessonTd = document.createElement("td");
+    lessonTd.className = "lesson";
+    lessonTd.innerHTML = '<span></span><small>Chương I</small>';
+    lessonTd.querySelector("span").textContent = lesson[0];
+
+    const topicTd = document.createElement("td");
+    const topic = document.createElement("input");
+    topic.type = "text";
+    topic.value = lesson[1];
+    topic.setAttribute("aria-label", "Kiến thức trọng tâm " + lesson[0]);
+    topicTd.appendChild(topic);
+
+    tr.appendChild(lessonTd);
+    tr.appendChild(topicTd);
+
+    ["Hiểu bài", "Nhớ định nghĩa, công thức", "Vận dụng giải bài tập"].forEach((criterion, j) => {
+      const td = document.createElement("td");
+      td.appendChild(makeSelect(lesson[0] + " – " + criterion, ""));
+      tr.appendChild(td);
+    });
+    rows.appendChild(tr);
+  });
+
+  function updateStats() {
+    const selects = Array.from(rows.querySelectorAll("select"));
+    const rated = selects.filter(s => s.value !== "").length;
+    const total = selects.length;
+    const percent = total ? Math.round(rated / total * 100) : 0;
+    document.getElementById("ratedCount").textContent = rated;
+    document.getElementById("totalCount").textContent = total;
+    document.getElementById("completionNumber").textContent = percent + "%";
+    document.getElementById("progressFill").style.width = percent + "%";
+    document.getElementById("progressTrack").setAttribute("aria-valuenow", percent);
+  }
+
+  function collectData() {
+    return {
+      title: "Tự đánh giá năng lực kiến thức – Toán 12",
+      chapter: document.getElementById("chapterSubtitle").textContent,
+      updatedAt: new Date().toLocaleString("vi-VN"),
+      lessons: Array.from(rows.querySelectorAll("tr")).map(tr => ({
+        lesson: tr.querySelector(".lesson span").textContent,
+        topic: tr.querySelector('input[type="text"]').value,
+        ratings: Array.from(tr.querySelectorAll("select")).map(s => s.value)
+      })),
+      reflections: {
+        strengths: document.getElementById("strengths").value,
+        challenges: document.getElementById("challenges").value,
+        plan: document.getElementById("plan").value,
+        support: document.getElementById("support").value
+      }
+    };
+  }
+
+  function loadData(data) {
+    if (!data) return;
+    const trs = Array.from(rows.querySelectorAll("tr"));
+    (data.lessons || []).forEach((lesson, i) => {
+      const tr = trs[i];
+      if (!tr) return;
+      tr.querySelector(".lesson span").textContent = lesson.lesson || ("Bài " + (i + 1));
+      tr.querySelector('input[type="text"]').value = lesson.topic || "";
+      Array.from(tr.querySelectorAll("select")).forEach((s, j) => s.value = (lesson.ratings || [])[j] || "");
+    });
+    const r = data.reflections || {};
+    document.getElementById("strengths").value = r.strengths || "";
+    document.getElementById("challenges").value = r.challenges || "";
+    document.getElementById("plan").value = r.plan || "";
+    document.getElementById("support").value = r.support || "";
+    updateStats();
+  }
+
+  function status(message) { document.getElementById("statusMessage").textContent = message; }
+
+  document.getElementById("saveButton").addEventListener("click", function () {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(collectData()));
+      status("Đã lưu trên trình duyệt này. Để dự phòng, bạn nên tải bản JSON hoặc in/lưu PDF.");
+    } catch (e) {
+      status("Trình duyệt không cho phép lưu tự động tại nơi này. Hãy dùng “Tải bản đánh giá” hoặc “In / lưu PDF”.");
+    }
+  });
+
+  document.getElementById("exportButton").addEventListener("click", function () {
+    const blob = new Blob([JSON.stringify(collectData(), null, 2)], { type: "application/json;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = "phieu-tu-danh-gia-toan-12.json";
+    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    status("Đã tạo tệp JSON để tải về. Tệp này lưu dữ liệu đã nhập, không phải bản trình bày PDF.");
+  });
+
+  document.getElementById("printButton").addEventListener("click", function () {
+    window.print();
+  });
+
+  document.getElementById("resetButton").addEventListener("click", function () {
+    if (!confirm("Bạn có chắc muốn xóa các mức đánh giá và phần phản tư đã nhập?")) return;
+    rows.querySelectorAll("select").forEach(s => s.value = "");
+    rows.querySelectorAll('input[type="text"]').forEach((input, i) => input.value = defaultLessons[i][1]);
+    ["strengths", "challenges", "plan", "support"].forEach(id => document.getElementById(id).value = "");
+    try { localStorage.removeItem(storageKey); } catch (e) {}
+    updateStats();
+    status("Đã xóa nội dung trong biểu mẫu.");
+  });
+
+  const embeddedData = {"title": "Tự đánh giá năng lực kiến thức – Toán 12", "chapter": "Chương 1 · Ứng dụng đạo hàm để khảo sát và vẽ đồ thị hàm số", "updatedAt": "10:58:30 18/10/2026", "lessons": [{"lesson": "Bài 1", "topic": "Tính đơn điệu và cực trị của hàm số", "ratings": ["4", "5", "4"]}, {"lesson": "Bài 2", "topic": "Giá trị lớn nhất và giá trị nhỏ nhất", "ratings": ["4", "5", "4"]}, {"lesson": "Bài 3", "topic": "Đường tiệm cận của đồ thị hàm số", "ratings": ["4", "5", "4"]}, {"lesson": "Bài 4", "topic": "Khảo sát sự biến thiên và vẽ đồ thị hàm số", "ratings": ["4", "4", "4"]}, {"lesson": "Bài 5", "topic": "Ứng dụng đạo hàm để giải quyết vấn đề thực tiễn", "ratings": ["3", "3", "3"]}], "reflections": {"strengths": "Em có cố gắng hoàn thành các bài tập được giao. Em đã biết sử dụng đạo hàm để xét tính đơn điệu, tìm cực trị của hàm số và bước đầu lập bảng biến thiên.", "challenges": "Với bài khảo sát, vẽ đồ thị hàm số hoặc bài toán thực tiễn, em còn mất nhiều thời gian và chưa thật sự tự tin. Em cũng cần cẩn thận hơn khi tính toán và kiểm tra điều kiện.", "plan": "Mỗi tuần, em sẽ hệ thống lại định nghĩa và công thức quan trọng, sau đó làm bài tập từ cơ bản đến vận dụng.", "support": "Em mong giáo viên hướng dẫn thêm bài tập mẫu về ứng dụng đạo hàm trong thực tiễn, kèm lời giải từng bước để em dễ hiểu và tự luyện lại."}};
+  try {
+    const saved = localStorage.getItem(storageKey);
+    if (saved) loadData(JSON.parse(saved));
+    else loadData(embeddedData);
+  } catch (e) {
+    loadData(embeddedData);
+  }
+  updateStats();
+})();
+</script>
+<style>
+@media print {
+  body { padding: 0; background: white; }
+  .portfolio { border-radius: 0; }
+  .actions { display: none; }
+  input, select, textarea { border-color: #ccc; }
+  .table-wrap { overflow: visible; }
+  table { min-width: 0; font-size: 9px; }
+  th, td { padding: 6px 4px; }
+  .hero { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}
+</style>
+</body>
+</html>
